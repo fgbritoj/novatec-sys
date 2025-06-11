@@ -37,11 +37,11 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
-            if ($user->isAdmin()) {
-                return redirect()->intended(route('admin.dashboard'));
-            }
-
-            return redirect()->intended(route('client.dashboard'));
+            
+            // Redireciona baseado na role do usuário
+            $redirectRoute = $user->role === 'admin' ? 'admin.dashboard' : 'client.dashboard';
+            
+            return redirect()->intended(route($redirectRoute));
         }
 
         return back()->withErrors([

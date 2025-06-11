@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
 // Client routes
 Route::prefix('client')
     ->name('client.')
-    ->middleware(['auth', 'verified', 'role:client'])
+    ->middleware(['auth', 'verified', 'check.role:client'])
     ->group(function () {
         Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
         Route::get('/quotes', function () {
@@ -89,7 +89,7 @@ Route::prefix('client')
 // Admin routes
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'verified', 'role:admin'])
+    ->middleware(['auth', 'verified', 'check.role:admin'])
     ->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     });

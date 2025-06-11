@@ -25,7 +25,11 @@ class CheckRole
         $userRole = $request->user()->role;
         
         if ($userRole !== $role) {
-            return redirect()->route($userRole . '.dashboard');
+            // Se o usuário não tem a role correta, redireciona para o dashboard apropriado
+            if ($userRole === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('client.dashboard');
         }
 
         return $next($request);
