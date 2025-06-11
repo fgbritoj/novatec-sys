@@ -212,7 +212,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm, Link, usePage } from '@inertiajs/vue3'
 import GuestLayout from '@/Layouts/GuestLayout.vue'
 import Swiper from 'swiper'
 import { Pagination, Navigation, Autoplay } from 'swiper/modules'
