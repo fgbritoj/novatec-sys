@@ -10,7 +10,7 @@
               <img src="/images/banners/banner1.jpg" alt="Gestão de Assistência Técnica" class="w-full h-full object-cover object-center absolute inset-0 -z-10">
             </div>
             <div class="container mx-auto px-4 h-full flex items-center justify-center">
-              <div class="text-center text-white max-w-4xl">
+              <div class="text-center text-white max-w-4xl relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">
                   Gestão Completa para sua Assistência Técnica
                 </h1>
@@ -30,7 +30,7 @@
               <img src="/images/banners/banner2.jpg" alt="Controle de Orçamentos" class="w-full h-full object-cover object-center absolute inset-0 -z-10">
             </div>
             <div class="container mx-auto px-4 h-full flex items-center justify-center">
-              <div class="text-center text-white max-w-4xl">
+              <div class="text-center text-white max-w-4xl relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">
                   Controle Total de Orçamentos
                 </h1>
@@ -50,7 +50,7 @@
               <img src="/images/banners/banner3.jpg" alt="Gestão de Clientes" class="w-full h-full object-cover object-center absolute inset-0 -z-10">
             </div>
             <div class="container mx-auto px-4 h-full flex items-center justify-center">
-              <div class="text-center text-white max-w-4xl">
+              <div class="text-center text-white max-w-4xl relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">
                   Gestão Eficiente de Clientes
                 </h1>
@@ -74,9 +74,9 @@
     <section id="servicos" class="py-20 bg-white">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Nossas Funcionalidades</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="feature in features" :key="feature.id" 
-               class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform">
+               class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
             <div class="text-4xl text-blue-600 mb-4">
               <i :class="feature.icon"></i>
             </div>
@@ -240,6 +240,24 @@ const features = [
     icon: 'fas fa-laptop',
     title: 'Equipamentos',
     description: 'Controle de equipamentos e histórico de manutenções'
+  },
+  {
+    id: 4,
+    icon: 'fas fa-calendar-alt',
+    title: 'Agendamentos',
+    description: 'Sistema de agendamento de serviços e controle de horários'
+  },
+  {
+    id: 5,
+    icon: 'fas fa-chart-line',
+    title: 'Relatórios',
+    description: 'Relatórios detalhados de vendas, serviços e desempenho'
+  },
+  {
+    id: 6,
+    icon: 'fas fa-mobile-alt',
+    title: 'Notificações',
+    description: 'Sistema de notificações para clientes e equipe técnica'
   }
 ]
 

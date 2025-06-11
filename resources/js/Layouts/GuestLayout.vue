@@ -3,7 +3,7 @@
     <!-- Fixed Header -->
     <header class="fixed w-full bg-white shadow-md z-50">
       <div class="container mx-auto px-4">
-        <!-- Social Icons Bar - Only show on home page -->
+        <!-- Social Icons Bar -->
         <Transition
           enter-active-class="transition-all duration-1000 ease-out"
           enter-from-class="opacity-0 -translate-y-full"
@@ -13,7 +13,7 @@
           leave-to-class="opacity-0 -translate-y-full"
           appear
         >
-          <div v-show="isHomePage" class="social-bar flex justify-between items-center py-2 border-b border-gray-100">
+          <div v-show="shouldShowSocialBar" class="social-bar flex justify-between items-center py-2 border-b border-gray-100">
             <div class="flex items-center space-x-4">
               <a href="#" class="text-gray-600 hover:text-blue-600" title="Instagram">
                 <i class="fab fa-instagram"></i>
@@ -183,6 +183,11 @@ const mobileMenuOpen = ref(false)
 
 const isHomePage = computed(() => {
   return usePage().url === '/'
+})
+
+const shouldShowSocialBar = computed(() => {
+  const currentUrl = usePage().url
+  return currentUrl === '/' || currentUrl === '/register' || currentUrl === '/login'
 })
 
 const toggleMobileMenu = () => {
