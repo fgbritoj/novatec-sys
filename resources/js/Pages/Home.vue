@@ -94,7 +94,7 @@
           <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Sobre a NovaTec</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
-              <img src="/images/about.jpg" alt="NovaTec Office" class="rounded-lg shadow-lg">
+              <img src="/images/logo-branca.png" alt="NovaTec Logo" class="rounded-lg shadow-lg w-full h-auto">
             </div>
             <div>
               <p class="text-gray-600 mb-4">
@@ -106,12 +106,16 @@
                 está preparada para atender todas as suas necessidades em tecnologia.
               </p>
               <div class="grid grid-cols-2 gap-4 mt-8">
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-blue-600">1000+</div>
+                <div class="text-center transform hover:scale-105 transition-transform duration-300">
+                  <div class="text-3xl font-bold text-blue-600">
+                    <span class="counter" ref="clientesCounter">0</span>+
+                  </div>
                   <div class="text-gray-500">Clientes Atendidos</div>
                 </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-blue-600">98%</div>
+                <div class="text-center transform hover:scale-105 transition-transform duration-300">
+                  <div class="text-3xl font-bold text-blue-600">
+                    <span class="counter" ref="satisfacaoCounter">0</span>%
+                  </div>
                   <div class="text-gray-500">Satisfação</div>
                 </div>
               </div>
@@ -211,7 +215,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useForm, Link, usePage } from '@inertiajs/vue3'
 import GuestLayout from '@/Layouts/GuestLayout.vue'
 import Swiper from 'swiper'
@@ -275,6 +279,34 @@ const submitContact = () => {
   })
 }
 
+const clientesCounter = ref(null)
+const satisfacaoCounter = ref(null)
+
+const animateValue = (element, start, end, duration) => {
+  if (!element) return
+  
+  let startTimestamp = null
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+    const value = Math.floor(progress * (end - start) + start)
+    element.textContent = value
+    if (progress < 1) {
+      window.requestAnimationFrame(step)
+    }
+  }
+  window.requestAnimationFrame(step)
+}
+
+const startCounterAnimation = () => {
+  if (clientesCounter.value) {
+    animateValue(clientesCounter.value, 0, 1000, 2000)
+  }
+  if (satisfacaoCounter.value) {
+    animateValue(satisfacaoCounter.value, 0, 98, 2000)
+  }
+}
+
 onMounted(() => {
   setTimeout(() => {
     new Swiper('.hero-swiper', {
@@ -296,6 +328,21 @@ onMounted(() => {
       },
     })
   }, 100) // Small delay to ensure DOM is ready
+
+  // Add Intersection Observer for counter animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startCounterAnimation()
+        observer.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.5 })
+
+  const aboutSection = document.getElementById('sobre')
+  if (aboutSection) {
+    observer.observe(aboutSection)
+  }
 })
 </script>
 

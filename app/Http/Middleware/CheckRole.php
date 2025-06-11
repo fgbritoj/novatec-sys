@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
 {
@@ -15,7 +16,7 @@ class CheckRole
      * @param  string  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, string $role): Response
     {
         if (!$request->user()) {
             return redirect()->route('login');
@@ -24,7 +25,7 @@ class CheckRole
         $userRole = $request->user()->role;
         
         if ($userRole !== $role) {
-            abort(403, 'Unauthorized action.');
+            return redirect()->route($userRole . '.dashboard');
         }
 
         return $next($request);

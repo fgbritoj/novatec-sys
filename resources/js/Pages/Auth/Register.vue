@@ -1,7 +1,7 @@
 <template>
   <GuestLayout>
-    <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-      <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="flex flex-col sm:justify-center items-center pt-24 sm:pt-24 bg-gradient-to-r from-blue-600 to-blue-800 min-h-screen">
+      <div class="w-full sm:max-w-md mt-6 px-6 py-8 bg-white shadow-xl overflow-hidden sm:rounded-lg">
         <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">
           Registre sua Empresa
         </h2>

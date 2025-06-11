@@ -1,134 +1,50 @@
 <template>
-  <AuthenticatedLayout>
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <!-- Quick Stats -->
-          <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <i class="fas fa-users text-blue-600 text-3xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 truncate">
-                      Total de Clientes
-                    </dt>
-                    <dd class="text-3xl font-semibold text-gray-900">
-                      {{ stats.totalClients }}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
+  <div class="min-h-screen bg-gray-100">
+    <nav class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-2xl font-bold text-blue-600">NovaTec</h1>
             </div>
           </div>
-
-          <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <i class="fas fa-file-invoice text-blue-600 text-3xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 truncate">
-                      Orçamentos Pendentes
-                    </dt>
-                    <dd class="text-3xl font-semibold text-gray-900">
-                      {{ stats.pendingQuotes }}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <i class="fas fa-tools text-blue-600 text-3xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 truncate">
-                      Serviços em Andamento
-                    </dt>
-                    <dd class="text-3xl font-semibold text-gray-900">
-                      {{ stats.activeServices }}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <i class="fas fa-chart-line text-blue-600 text-3xl"></i>
-                </div>
-                <div class="ml-5 w-0 flex-1">
-                  <dl>
-                    <dt class="text-sm font-medium text-gray-500 truncate">
-                      Faturamento Mensal
-                    </dt>
-                    <dd class="text-3xl font-semibold text-gray-900">
-                      {{ stats.monthlyRevenue }}
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Activity -->
-        <div class="mt-8">
-          <h2 class="text-lg font-medium text-gray-900">Atividade Recente</h2>
-          <div class="mt-4 bg-white shadow rounded-lg">
-            <div class="p-6">
-              <div v-if="recentActivity.length > 0">
-                <div v-for="activity in recentActivity" :key="activity.id" class="mb-4 last:mb-0">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <i :class="activity.icon" class="text-blue-600"></i>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-sm font-medium text-gray-900">{{ activity.description }}</p>
-                      <p class="text-sm text-gray-500">{{ activity.date }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p v-else class="text-gray-500 text-center">Nenhuma atividade recente.</p>
-            </div>
+          <div class="flex items-center">
+            <button @click="logout" class="text-gray-600 hover:text-gray-900">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </AuthenticatedLayout>
+    </nav>
+
+    <header class="bg-white shadow">
+      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-900">
+          Dashboard Administrativo
+        </h2>
+      </div>
+    </header>
+
+    <main>
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Replace with your content -->
+        <div class="px-4 py-6 sm:px-0">
+          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
+            <p class="text-gray-500 text-lg">
+              Conteúdo do Dashboard em desenvolvimento...
+            </p>
+          </div>
+        </div>
+        <!-- /End replace -->
+      </div>
+    </main>
+  </div>
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import { defineProps } from 'vue'
+import { router } from '@inertiajs/vue3'
 
-const props = defineProps({
-  stats: {
-    type: Object,
-    default: () => ({
-      totalClients: 0,
-      pendingQuotes: 0,
-      activeServices: 0,
-      monthlyRevenue: 'R$ 0,00'
-    })
-  },
-  recentActivity: {
-    type: Array,
-    default: () => []
-  }
-})
+const logout = () => {
+  router.post(route('logout'))
+}
 </script> 
